@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+poner como input duration y height y width y colocar las variables donde necesario
+
+
+
+
+
+mejorar la estica un poco quizas aunque igual no para no joder
+
+
+
+
+
+
+
+
+y hacer modificar squares : que se quede donde se ha drag
+
+
+
+
+
+hay un poppin, sobretodo noticeable con border
+
+
