@@ -3,9 +3,13 @@
 import { useState, useRef, useEffect } from "react";
 import { HandGrab } from "lucide-react";
 
-const CONTAINER_WIDTH = 130;
 
-const CONTAINER_HEIGHT = 130;
+const CONTAINER_WIDTH = 60;
+const CONTAINER_HEIGHT = 60;
+
+const WIDTH_CLASS = "w-[60px]";
+const HEIGHT_CLASS = "h-[60px]";
+
 
 export default function PiledSquares() {
   const [topMeasure, setTopMeasure] = useState<number>(0);
@@ -58,14 +62,14 @@ export default function PiledSquares() {
     prevColor.current = squares[id].color;
 
     const startY = e.clientY;
-    const iniPosition = (130 * (id - 1)) / 2;
+    const iniPosition = (CONTAINER_HEIGHT * (id - 1)) / 2;
 
     setTopMeasure(iniPosition);
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
       setTopMeasure(iniPosition + (moveEvent.clientY - startY));
 
-      const shadowRange = Math.floor((moveEvent.clientY - startY + 65) / 130);
+      const shadowRange = Math.floor((moveEvent.clientY - startY + (CONTAINER_HEIGHT/2)) / CONTAINER_HEIGHT);
 
       if (shadowRange === 0) {
         setActiveShadow(id);
@@ -101,7 +105,7 @@ export default function PiledSquares() {
         setNotSquare(null);
 
         const finalShadowRange = Math.floor(
-          (upEvent.clientY - startY + 65) / 130
+          (upEvent.clientY - startY + (CONTAINER_HEIGHT/2)) / CONTAINER_HEIGHT
         );
 
         const finalShadowPos = id + 2 * finalShadowRange;
@@ -134,17 +138,17 @@ export default function PiledSquares() {
             notSquare !== index ? (
               <div
                 key={colorCom.id}
-                className={`w-[130px] h-[130px] flex justify-center items-center ${colorCom.color} cursor-grab`}
+                className={`${WIDTH_CLASS} ${HEIGHT_CLASS}  flex justify-center items-center ${colorCom.color} cursor-grab`}
                 onMouseDown={handleDrag(index)}
               >
-                <HandGrab />
+                <HandGrab size={16}/>
               </div>
             ) : (
               <div
                 key={colorCom.id}
                 className={`w-full bg-black/30 ${
                   activeShadow === index
-                    ? "h-[130px] border-0 border-gray-500"
+                    ? `${HEIGHT_CLASS}  border-0 border-gray-500`
                     : "h-[0px]"
                 } ${
                   transitionActive
@@ -162,7 +166,7 @@ export default function PiledSquares() {
               key={colorCom.id}
               className={`w-full bg-black/30 transition-[height] duration-250 ease-in-out ${
                 activeShadow === index
-                  ? "h-[130px] border-0 border-gray-500"
+                  ? `${HEIGHT_CLASS}  border-0 border-gray-500`
                   : "h-[0px]"
               }`}
             />
@@ -174,10 +178,11 @@ export default function PiledSquares() {
 
       {notSquare != null && (
         <div
-          className={`w-[130px] h-[130px] absolute opacity-50 flex justify-center items-center ${prevColor.current}`}
+          className={`${WIDTH_CLASS} ${HEIGHT_CLASS} absolute opacity-50 flex justify-center items-center ${prevColor.current}`}
+
           style={{ top: topMeasure }}
         >
-          <HandGrab />
+          <HandGrab size={16}/>
         </div>
       )}
     </div>
