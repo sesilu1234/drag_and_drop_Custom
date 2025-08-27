@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --shadow-box: rgba(0, 0, 0, 0.3); /* adjust if needed */
 }
 
 @theme inline {
@@ -14,8 +15,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #171717;
+    --foreground: #ffffff;
+    --shadow-box: rgba(237, 237, 237, 0.3); /* adjust if needed */
   }
 }
 
